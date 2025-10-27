@@ -60,7 +60,7 @@ function SetupStream(stream) {
         const blob = new Blob(chunks, {type: "audio/ogg; codecs=opus"}
         )
         chunks = []; // Clear the memory so it can start again from nothing.
-        const audioURL = window.URL.createObjectURL(chunks);
+        // const audioURL = window.URL.createObjectURL(chunks);
     }
 
 }
@@ -70,12 +70,14 @@ function main() {
 
     document.getElementById("mictoggle").onclick = function () {
         if (recorder.state === "inactive") {
-            console.log("Recording inactive")
+            recorder.start();
+            console.log("Recording started");
         } else if (recorder.state === "paused") {
-            
-            console.log("Recording paused")
+            recorder.resume();
+            console.log("Recording resumed");
         } else {
-            console.log("Recording active")
+            recorder.stop();
+            console.log("Recording stopped");
     
         }
     }
